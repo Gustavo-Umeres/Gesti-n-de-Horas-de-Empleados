@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'core',
+    'drf_spectacular', 
+
 ]
 
 MIDDLEWARE = [
@@ -134,6 +136,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # --- CONFIGURACIÓN DE DJANGO REST FRAMEWORK (ACTUALIZADO PARA JWT) ---
 REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ],
@@ -143,4 +147,17 @@ REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': [
         'django_filters.rest_framework.DjangoFilterBackend',
     ],
+}
+
+
+
+
+
+ # --- AÑADIR ESTO AL FINAL DEL ARCHIVO ---
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'API de Control de Horas y Producción',
+    'DESCRIPTION': 'Documentación detallada de la API para la gestión de producción, trabajadores y pedidos.',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False, # Opcional: Esconde el link al schema .yaml
+    # OTRAS CONFIGURACIONES...
 }
